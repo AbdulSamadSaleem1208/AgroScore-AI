@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>AgroScoreAI — Mobile App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="prototype-shell">
+      <aside class="demo-panel">
+        <h2>AgroScoreAI Live Demo</h2>
+        <p>Open on phone or resize browser. Tap <strong>Investor Demo Mode</strong> for instant full walkthrough.</p>
+        <p class="demo-url">http://127.0.0.1:5500</p>
+      </aside>
+
+      <div class="phone-frame" id="phoneFrame">
+        <div class="status-bar">
+          <span>9:41</span>
+          <span class="brand-mini">AgroScoreAI</span>
+          <span>4G 92%</span>
+        </div>
+
+        <!-- AUTH -->
+        <section id="view-auth" class="view active auth-screen">
+          <div class="view-body auth-layout">
+            <div class="auth-brand">
+              <div class="logo-mark">🌾</div>
+              <h1>AgroScoreAI</h1>
+              <p class="muted" data-i18n="tagline">Wheat financial intelligence for Pakistan</p>
+              <p class="investor-strip" data-i18n="investorPitch">Built for Pakistan's 4 languages & rural reality</p>
+            </div>
+
+            <p class="lang-section-label" data-i18n="chooseLanguage">Choose your language</p>
+            <div class="lang-picker" id="authLangPicker">
+              <button type="button" class="lang-btn active" data-lang="en">English</button>
+              <button type="button" class="lang-btn" data-lang="ur">اردو</button>
+              <button type="button" class="lang-btn" data-lang="ps">پښتو</button>
+              <button type="button" class="lang-btn" data-lang="bal">بلوچی</button>
+            </div>
+
+            <div class="chip-row role-row">
+              <button class="chip active" data-role="farmer" data-i18n="roleFarmer">Farmer</button>
+              <button class="chip" data-role="bank" data-i18n="roleBank">Bank / MFI</button>
+              <button class="chip" data-role="field" data-i18n="roleField">Field Officer</button>
+            </div>
+
+            <form id="loginForm" class="card form-card glass">
+              <label>
+                <span data-i18n="cnic">CNIC / Organization ID</span>
+                <input id="loginId" required placeholder="35202-1234567-1" />
+              </label>
+              <label>
+                <span data-i18n="mobile">Mobile Number</span>
+                <input id="loginMobile" required placeholder="03XX-XXXXXXX" />
+              </label>
+              <label>
+                <span data-i18n="pin">PIN</span>
+                <input id="loginPin" required type="password" placeholder="••••" />
+              </label>
+              <button class="primary-btn btn-lg" type="submit" data-i18n="continue">Continue</button>
+              <button id="openFullDemo" class="accent-btn btn-lg" type="button" data-i18n="fullDemo">Investor Demo Mode</button>
+              <button class="ghost-btn" type="button" data-i18n="helpline">Need Help? Call 0800-AGRO</button>
+            </form>
+          </div>
+        </section>
+
+        <!-- ONBOARDING -->
+        <section id="view-onboarding" class="view">
+          <header class="app-header">
+            <div>
+              <p class="tiny-label"><span data-i18n="stepOf">Step</span> <span id="stepNumber">1</span> / 2</p>
+              <h2 data-i18n="onboarding">Setup Profile</h2>
+            </div>
+            <button id="skipOnboarding" class="ghost-btn small" data-i18n="skip">Skip</button>
+          </header>
+          <div class="view-body">
+            <div class="stepper"><div class="dot active"></div><div class="dot" id="stepDot2"></div></div>
+            <form id="onboardingForm">
+              <div id="step1" class="step active card form-card">
+                <h3 data-i18n="farmerProfile">Farmer Profile</h3>
+                <label><span data-i18n="fullName">Full Name</span><input id="farmerName" value="Ahmed Raza" /></label>
+                <label><span data-i18n="district">District</span><input id="farmerDistrict" value="Vehari" /></label>
+                <label><span data-i18n="farmArea">Farm Area (acres)</span><input id="farmerArea" value="4.2" /></label>
+                <label><span data-i18n="primaryCrop">Primary Crop</span><select><option>Wheat</option></select></label>
+              </div>
+              <div id="step2" class="step card form-card">
+                <h3 data-i18n="consentTitle">Data & Language</h3>
+                <label><span data-i18n="dataMode">Data capture mode</span><select><option>Field + App + SMS</option></select></label>
+                <label><span data-i18n="prefLang">Preferred language</span>
+                  <select id="onboardLang">
+                    <option value="en">English</option>
+                    <option value="ur">اردو</option>
+                    <option value="ps">پښتو</option>
+                    <option value="bal">بلوچی</option>
+                  </select>
+                </label>
+                <label class="checkbox-row"><input type="checkbox" checked /><span data-i18n="consent1">I consent to data processing.</span></label>
+                <label class="checkbox-row"><input type="checkbox" checked /><span data-i18n="consent2">I allow score sharing with institutions.</span></label>
+              </div>
+              <div class="row">
+                <button type="button" class="secondary-btn" id="backStep" data-i18n="back">Back</button>
+                <button type="button" class="primary-btn" id="nextStep" data-i18n="next">Next</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- MAIN APP -->
+        <section id="view-app" class="view">
+          <header class="app-header">
+            <div>
+              <h2 id="appTitle" data-i18n="tabHome">Home</h2>
+              <p class="muted" id="appSubtitle">Your wheat season at a glance</p>
+            </div>
+            <select id="appLangSelect" class="lang-select" aria-label="Language">
+              <option value="en">English</option>
+              <option value="ur">اردو</option>
+              <option value="ps">پښتو</option>
+              <option value="bal">بلوچی</option>
+            </select>
+          </header>
+
+          <div class="view-body app-scroll">
+            <!-- HOME -->
+            <section class="tab-screen active" id="tab-home">
+              <div class="welcome-strip" id="welcomeStrip">
+                <span class="welcome-emoji">👋</span>
+                <div>
+                  <strong id="welcomeText" data-i18n="welcomeUser">Welcome</strong>
+                  <span id="welcomeName">Ahmed Raza</span>
+                </div>
+              </div>
+              <article class="card hero-card">
+                <p class="tiny-label" data-i18n="currentSeason">Current wheat season</p>
+                <div class="hero-score-row">
+                  <h3><span data-i18n="creditScore">Credit Score</span> <span id="heroScoreValue">742</span></h3>
+                  <span id="heroRiskBadge" class="badge low">Low</span>
+                </div>
+                <p class="hero-sub"><span data-i18n="eligibleLoan">Eligible loan</span>: PKR <span id="heroLoanEligible">350,000</span></p>
+                <div class="pill-row">
+                  <span class="pill good-bg"><span data-i18n="dataConfidence">Data confidence</span>: <span id="heroConfidence">High</span></span>
+                  <span class="pill neutral-bg">v<span id="heroModelVersion">2.4.1</span></span>
+                </div>
+              </article>
+
+              <div class="quick-actions">
+                <button class="quick-btn jump-btn" data-jump="loan"><span class="qa-icon">₨</span><span data-i18n="quickApplyLoan">Apply for loan</span></button>
+                <button class="quick-btn jump-btn" data-jump="score"><span class="qa-icon">AI</span><span data-i18n="quickRunScore">Run AI score</span></button>
+                <button class="quick-btn jump-btn" data-jump="data"><span class="qa-icon">+</span><span data-i18n="quickAddData">Add farm data</span></button>
+              </div>
+
+              <div class="mini-grid">
+                <article class="card mini-card accent-teal"><p class="tiny-label" data-i18n="yieldTrend">Yield trend</p><h4>+12%</h4></article>
+                <article class="card mini-card accent-blue"><p class="tiny-label" data-i18n="repaymentHealth">Repayment health</p><h4>78</h4></article>
+                <article class="card mini-card accent-amber"><p class="tiny-label" data-i18n="defaultProb">Default probability</p><h4 id="heroDefaultProb">7.4%</h4></article>
+                <article class="card mini-card accent-green"><p class="tiny-label" data-i18n="decision">Decision</p><h4 id="heroDecision">Fast-track</h4></article>
+              </div>
+
+              <article class="card">
+                <h3 data-i18n="seasonTimeline">Season timeline</h3>
+                <ul class="timeline">
+                  <li><span>Nov 15</span><span data-i18n="tl1">Sowing complete</span></li>
+                  <li><span>Dec 06</span><span data-i18n="tl2">Fertilizer logged</span></li>
+                  <li><span>Jan 10</span><span data-i18n="tl3">Irrigation synced</span></li>
+                  <li><span>Feb 03</span><span data-i18n="tl4">Climate check done</span></li>
+                  <li><span>Mar 01</span><span data-i18n="tl5">Loan advisory ready</span></li>
+                </ul>
+              </article>
+            </section>
+
+            <!-- DATA -->
+            <section class="tab-screen" id="tab-data">
+              <article class="card">
+                <h3 data-i18n="dataConsole">Data Collection</h3>
+                <p class="muted" data-i18n="dataHint">Log wheat events to improve your credit score.</p>
+                <form id="dataCaptureForm" class="form-card no-border">
+                  <label><span data-i18n="eventType">Event type</span>
+                    <select id="eventType">
+                      <option value="sowing" data-i18n="eventSowing">Sowing update</option>
+                      <option value="irrigation" data-i18n="eventIrrigation">Irrigation cycle</option>
+                      <option value="fertilizer" data-i18n="eventFertilizer">Fertilizer purchase</option>
+                      <option value="harvest" data-i18n="eventHarvest">Harvest estimate</option>
+                    </select>
+                  </label>
+                  <label><span data-i18n="eventNote">Event note</span><input id="eventNote" placeholder="Canal water on time" /></label>
+                  <label><span data-i18n="source">Source</span>
+                    <select id="eventSource">
+                      <option value="farmer" data-i18n="srcFarmer">Farmer self-entry</option>
+                      <option value="field" data-i18n="srcField">Field officer verified</option>
+                      <option value="sms" data-i18n="srcSms">SMS import</option>
+                    </select>
+                  </label>
+                  <button class="primary-btn btn-lg" type="submit" data-i18n="addEvent">Add Event</button>
+                </form>
+              </article>
+              <article class="card">
+                <h3 data-i18n="recentEvents">Recent events</h3>
+                <ul id="eventLog" class="log-list"></ul>
+              </article>
+              <article class="card">
+                <h3 data-i18n="pipelineQuality">Data quality</h3>
+                <div class="score-line"><label data-i18n="completeness">Completeness</label><progress value="88" max="100"></progress></div>
+                <div class="score-line"><label data-i18n="crossMatch">Cross-source match</label><progress value="81" max="100"></progress></div>
+                <div class="score-line"><label data-i18n="freshness">Freshness</label><progress value="76" max="100"></progress></div>
+              </article>
+            </section>
+
+            <!-- SCORE -->
+            <section class="tab-screen" id="tab-score">
+              <article class="card score-hero-card">
+                <h3 data-i18n="aiEngine">AI Credit Scoring</h3>
+                <p class="muted" data-i18n="aiHint">Explainable wheat model for lenders and farmers.</p>
+                <div class="ai-score-layout">
+                  <div class="score-ring" id="scoreRing"><span id="aiScoreValue">742</span><small>/ 900</small></div>
+                  <div class="score-meta">
+                    <p><strong data-i18n="riskBand">Risk band</strong>: <span id="riskBand" class="badge low">Low</span></p>
+                    <p><strong data-i18n="defaultProbability">Default probability</strong>: <span id="defaultProbability">7.4%</span></p>
+                    <p><strong data-i18n="decisionClass">Decision</strong>: <span id="decisionClass">Approve fast-track</span></p>
+                    <p><strong data-i18n="modelConfidence">Model confidence</strong>: <span id="modelConfidence">High (0.87)</span></p>
+                    <button id="runScoring" class="primary-btn btn-lg" type="button" data-i18n="runScoring">Run AI Scoring</button>
+                  </div>
+                </div>
+              </article>
+              <article class="card">
+                <h3 data-i18n="featureInputs">Model factors</h3>
+                <div class="score-line"><label><span data-i18n="yieldStability">Yield stability (30%)</span> — <span id="yieldFactorLabel">85</span></label><input id="yieldFactor" type="range" min="30" max="100" value="85" /></div>
+                <div class="score-line"><label><span data-i18n="repaymentBehavior">Repayment (25%)</span> — <span id="repaymentFactorLabel">78</span></label><input id="repaymentFactor" type="range" min="30" max="100" value="78" /></div>
+                <div class="score-line"><label><span data-i18n="irrigation">Irrigation (20%)</span> — <span id="irrigationFactorLabel">80</span></label><input id="irrigationFactor" type="range" min="20" max="100" value="80" /></div>
+                <div class="score-line"><label><span data-i18n="transaction">Transactions (15%)</span> — <span id="transactionFactorLabel">71</span></label><input id="transactionFactor" type="range" min="20" max="100" value="71" /></div>
+                <div class="score-line"><label><span data-i18n="climate">Climate (10%)</span> — <span id="climateFactorLabel">65</span></label><input id="climateFactor" type="range" min="10" max="100" value="65" /></div>
+              </article>
+              <article class="card">
+                <h3 data-i18n="reasonCodes">AI reason codes</h3>
+                <ul class="clean-list" id="scoreReasons"></ul>
+              </article>
+            </section>
+
+            <!-- LOAN -->
+            <section class="tab-screen" id="tab-loan">
+              <article class="card">
+                <h3 data-i18n="loanApp">Loan Application</h3>
+                <form id="loanForm" class="form-card no-border">
+                  <label><span data-i18n="loanAmount">Loan amount (PKR)</span><input id="amount" type="number" min="50000" max="800000" value="300000" /></label>
+                  <label><span data-i18n="purpose">Purpose</span>
+                    <select id="purpose">
+                      <option value="seed" data-i18n="purposeSeed">Seeds + Fertilizer</option>
+                      <option value="irrigation" data-i18n="purposeIrrigation">Irrigation support</option>
+                      <option value="harvest" data-i18n="purposeHarvest">Harvest logistics</option>
+                    </select>
+                  </label>
+                  <label><span data-i18n="tenure">Tenure (months)</span><input id="tenure" type="range" min="3" max="12" value="6" /></label>
+                  <p><span data-i18n="tenure">Tenure</span>: <strong id="tenureValue">6</strong> <span data-i18n="tenureMonths">months</span></p>
+                  <button class="primary-btn btn-lg" type="submit" data-i18n="generatePlan">Generate repayment plan</button>
+                </form>
+              </article>
+              <article class="card">
+                <h3 data-i18n="repaymentPreview">Repayment preview</h3>
+                <div id="repaymentOutput"><p class="muted" data-i18n="repaymentHint">Generate a plan to see monthly installments.</p></div>
+              </article>
+            </section>
+
+            <!-- ADVISORY -->
+            <section class="tab-screen" id="tab-advisory">
+              <article class="card advisory-card">
+                <h3 data-i18n="advisoryFeed">Farmer advisory</h3>
+                <div class="advisory-item"><span class="adv-tag finance">Finance</span><p data-i18n="adv1">Apply within 5 days for lower seasonal markup.</p></div>
+                <div class="advisory-item"><span class="adv-tag input">Input</span><p data-i18n="adv2">Urea top-dressing in next irrigation window.</p></div>
+                <div class="advisory-item"><span class="adv-tag weather">Weather</span><p data-i18n="adv3">Dry spell expected in 6 days.</p></div>
+                <div class="advisory-item"><span class="adv-tag repay">Repay</span><p data-i18n="adv4">Reserve 18% of sale proceeds for installment-1.</p></div>
+              </article>
+              <article class="card">
+                <h3 data-i18n="channelStatus">Delivery channels</h3>
+                <ul class="channel-list">
+                  <li><span>SMS</span><span class="good">98%</span></li>
+                  <li><span>Voice</span><span class="good">Live</span></li>
+                  <li><span>App</span><span>Punjab beta</span></li>
+                </ul>
+              </article>
+            </section>
+
+            <!-- BANK -->
+            <section class="tab-screen" id="tab-bank">
+              <article class="card">
+                <h3 data-i18n="bankQueue">Bank decision queue</h3>
+                <div class="bank-cards">
+                  <div class="bank-row good-row"><div><strong>AG-1032</strong><small>Vehari</small></div><div class="bank-score">742</div><span class="badge low" data-i18n="low">Low</span></div>
+                  <div class="bank-row"><div><strong>AG-1190</strong><small>Sahiwal</small></div><div class="bank-score">688</div><span class="badge medium" data-i18n="medium">Medium</span></div>
+                  <div class="bank-row warn-row"><div><strong>AG-1251</strong><small>Bahawalpur</small></div><div class="bank-score">611</div><span class="badge high" data-i18n="highRisk">High</span></div>
+                </div>
+              </article>
+            </section>
+
+            <!-- MORE -->
+            <section class="tab-screen" id="tab-more">
+              <article class="card">
+                <h3 data-i18n="tabMore">More</h3>
+                <div class="action-grid">
+                  <button class="ghost-btn jump-btn" data-jump="bank" data-i18n="bankQueue">Bank queue</button>
+                  <button class="ghost-btn jump-btn" data-jump="showcase" data-i18n="fullDemo">Full demo</button>
+                  <button id="resetDemo" class="secondary-btn" data-i18n="toastReset">Reset demo</button>
+                </div>
+              </article>
+            </section>
+
+            <!-- SHOWCASE -->
+            <section class="tab-screen" id="tab-showcase">
+              <article class="card showcase-banner">
+                <h3>AgroScoreAI</h3>
+                <p data-i18n="investorPitch">Built for Pakistan's 4 languages & rural reality</p>
+              </article>
+              <article class="card"><h3>1. Auth + 4 languages</h3><p class="muted">English, Urdu, Pashto, Balochi</p></article>
+              <article class="card"><h3>2. Data collection</h3><p class="muted">Field, SMS, app — wheat events</p></article>
+              <article class="card"><h3>3. AI credit scoring</h3><p class="muted">Explainable weighted model</p></article>
+              <article class="card"><h3>4. Loan + advisory</h3><p class="muted">Repayment plan + localized tips</p></article>
+              <article class="card"><h3>5. Bank portal</h3><p class="muted">Institution decision queue</p></article>
+            </section>
+          </div>
+
+          <nav class="bottom-nav">
+            <button class="tab-btn active" data-tab="home"><span class="nav-icon">⌂</span><span data-i18n="tabHome">Home</span></button>
+            <button class="tab-btn" data-tab="data"><span class="nav-icon">◫</span><span data-i18n="tabData">Data</span></button>
+            <button class="tab-btn" data-tab="score"><span class="nav-icon">◎</span><span data-i18n="tabScore">Score</span></button>
+            <button class="tab-btn" data-tab="loan"><span class="nav-icon">₨</span><span data-i18n="tabLoan">Loan</span></button>
+            <button class="tab-btn" data-tab="advisory"><span class="nav-icon">✦</span><span data-i18n="tabAdvisory">Tips</span></button>
+            <button class="tab-btn" data-tab="more"><span class="nav-icon">⋯</span><span data-i18n="tabMore">More</span></button>
+          </nav>
+        </section>
+      </div>
+    </div>
+
+    <script src="./i18n.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+================================================================================
+AGROSCOREAI — GITHUB REPOSITORY DESCRIPTION (COPY-PASTE)
+================================================================================
+
+--------------------------------------------------------------------------------
+1) REPOSITORY NAME (GitHub)
+--------------------------------------------------------------------------------
+agroscoreai
+
+--------------------------------------------------------------------------------
+2) SHORT DESCRIPTION (GitHub "About" box — max ~350 chars)
+--------------------------------------------------------------------------------
+Mobile agri-fintech prototype for Pakistan wheat farmers. AI credit scoring, 4-language support (EN/Ur/Ps/Bal), data collection, loan simulator & bank portal. FNV · FAST School of Management.
+
+--------------------------------------------------------------------------------
+3) ONE-LINE TAGLINE (for bio, LinkedIn, pitch deck footer)
+--------------------------------------------------------------------------------
+AgroScoreAI — Wheat credit intelligence for Pakistan's farmers.
+
+--------------------------------------------------------------------------------
+4) EXTENDED DESCRIPTION (GitHub About / website meta / project submission)
+--------------------------------------------------------------------------------
+AgroScoreAI is a wheat-focused agri-fintech platform designed for Pakistan's smallholder farmers. The platform converts real farm activity — crop cycles, irrigation patterns, climate exposure, and transaction behavior — into an explainable AI credit score.
+
+Unlike traditional lending systems that require formal documents, AgroScoreAI builds a digital financial identity from agricultural data. Farmers receive localized advisory in four languages (English, Urdu, Pashto, Balochi), while banks and microfinance institutions get a decision-ready risk view through an institutional dashboard.
+
+This repository contains a fully interactive mobile-first frontend prototype with live AI scoring simulation, multi-language support, role-based workflows (Farmer, Bank/MFI, Field Officer), and an investor demo mode — no backend required.
+
+Built as the Financing New Ventures (FNV) final project at FAST School of Management, Spring 2025.
+
+--------------------------------------------------------------------------------
+5) GITHUB TOPICS / TAGS (paste in repo Topics field)
+--------------------------------------------------------------------------------
+agri-fintech
+agriculture
+pakistan
+wheat
+credit-scoring
+financial-inclusion
+mobile-app
+prototype
+ai
+machine-learning
+farmers
+microfinance
+explainable-ai
+urdu
+pashto
+balochi
+fast-university
+fnv-project
+
+--------------------------------------------------------------------------------
+6) WEBSITE / DEMO URL (if deploying — update before paste)
+--------------------------------------------------------------------------------
+https://YOUR_USERNAME.github.io/agroscoreai/
+OR
+http://127.0.0.1:5500  (local demo)
+
+--------------------------------------------------------------------------------
+7) SOCIAL / PITCH ONE-PARAGRAPH (copy for submissions, emails, forms)
+--------------------------------------------------------------------------------
+AgroScoreAI empowers Pakistan's wheat farmers with AI-driven credit intelligence. Our mobile platform collects farm data through app, SMS, and field channels, runs an explainable scoring model, and connects farmers to formal finance while reducing underwriting risk for banks. With support for English, Urdu, Pashto, and Balochi, AgroScoreAI is built for rural reality — not urban banking assumptions. We are seeking seed funding of PKR 56M to pilot in Punjab and Sindh wheat districts.
+
+--------------------------------------------------------------------------------
+8) PROJECT CATEGORY LABELS (for forms / hackathons / university submission)
+--------------------------------------------------------------------------------
+Category: Agri-Fintech / Financial Inclusion / AI for Social Impact
+Stage: Prototype / MVP
+Market: Pakistan — Smallholder Wheat Farmers
+Tech: Mobile Web Prototype · Explainable AI · Multilingual UX
+
+================================================================================
